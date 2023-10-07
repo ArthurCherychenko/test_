@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { clearLog } from './store/slice/timerSlice';
+import TimerButton from '../src/components/TimerButton/TimerButton';
+import Log from '../src/components/Log/Log';
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+
+  const handleClearButtonClick = () => {
+    dispatch(clearLog());
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+        <h1>Timer App</h1>
+        <TimerButton delay={1} button={1} />
+        <TimerButton delay={2} button={2} />
+        <TimerButton delay={3} button={3} />
+        <Log />
+        <button onClick={handleClearButtonClick}>Clear</button>
+      </div>
   );
-}
+};
 
 export default App;
