@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {addToLog} from '../../store/slice/timerSlice';
+import {Button, Space} from "antd";
+import style from "./timerButton.module.scss"
 
 
 const TimerButton = ({ delay, button }) => {
@@ -26,13 +28,13 @@ const TimerButton = ({ delay, button }) => {
     };
 
     return (
-        <div>
-            <button onClick={handleButtonClick} disabled={timer !== null}>
+        <Space className={style.wrapper}>
+            <Button className={style.buttonTimer} type="primary" onClick={handleButtonClick} disabled={timer !== null}>
                 {timer
                     ? `Timer is Running`
                     : `Start Timer ${delay} sec`}
-            </button>
-        </div>
+            </Button>
+        </Space>
     );
 };
 
